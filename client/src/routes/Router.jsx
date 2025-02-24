@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router";
+import MainLayout from "../layouts/MainLayout";
 
 const Router = () => {
   return (
     <Routes>
-      <Route index element={<h1>Hello</h1>} />
+      <Route index element={<MainLayout />} />
     </Routes>
   );
 };

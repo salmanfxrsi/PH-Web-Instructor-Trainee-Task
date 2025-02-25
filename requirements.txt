@@ -84,15 +84,15 @@ Users, agents, and admins can log in with:
 
 ### **3. Cash-Out (User)**
 - Users can cash-out through authorized agents.
-- **1.5% fee** applies to cash-out transactions.
-- Users must provide **amount and PIN**.
-- After transaction:
-  - **User balance** updates.
-  - **Agent balance** updates.
-  - **Agent earns 1%** of the transaction.
-  - **Admin earns 0.5%** of the transaction.
-  - **Total money in the system updates**.
-- Users receive **a transaction notification**.
+- **1.5% fee** applies to cash-out transactions. ✔️
+- Users must provide **amount and PIN**. ✔️
+- After transaction: ✔️
+  - **User balance** updates. ✔️
+  - **Agent balance** updates. ✔️
+  - **Agent earns 1%** of the transaction. ✔️
+  - **Admin earns 0.5%** of the transaction. ✔️
+  - **Total money in the system updates**. ✔️
+- Users receive **a transaction notification**. ✔️
 
 ### **4. Cash-In (Agent)**
 - Users can cash-in via authorized agents.

@@ -14,7 +14,7 @@ const Navbar = () => {
   const commonNavigationLink = (
     <>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/">About Us</NavLink>
+      <NavLink to="about">About Us</NavLink>
       <NavLink to="/">Ongoing Offer</NavLink>
       <NavLink to="/">Contact</NavLink>
     </>

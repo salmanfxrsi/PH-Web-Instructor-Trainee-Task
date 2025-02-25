@@ -1,4 +1,24 @@
+import { useState } from "react";
+
 const Login = () => {
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    // Refresh Error State
+    setError("");
+
+    e.preventDefault();
+    const form = e.target;
+    const pin = form.pin.value;
+    const email = form.email.value;
+
+    // Pin Length Validation
+    if (pin.length !== 5) return setError("Pin must be in 5 Digits");
+
+    const userInfo = { pin: Number(pin), email };
+    console.log(userInfo);
+  };
+
   return (
     <div className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -16,7 +36,7 @@ const Login = () => {
 
         {/* Login Form Section */}
         <div className="card w-full max-w-sm">
-          <form className="card-body space-y-2">
+          <form onSubmit={handleSubmit} className="card-body space-y-2">
             {/* Email Input */}
             <div className="form-control">
               <label htmlFor="email" className="font-semibold text-white">
@@ -39,8 +59,8 @@ const Login = () => {
                 PIN
               </label>
               <input
-                id="password"
-                type="password"
+                id="pin"
+                type="number"
                 placeholder="Enter your PIN"
                 name="pin"
                 className="input input-bordered bg-white rounded-lg border border-gray-300 mt-1"
@@ -48,8 +68,11 @@ const Login = () => {
               />
             </div>
 
+            {/* Show Error */}
+            <p className="text-red-500 mt-1 font-black">{error}</p>
+
             {/* Login Button */}
-            <div className="form-control mt-4">
+            <div className="form-control mt-2">
               <button className="w-full bg-gradient-to-bl from-violet-500 to-fuchsia-500 py-2 px-5 font-bold text-white rounded-lg transition duration-300 hover:opacity-90">
                 Login Now
               </button>

@@ -12,6 +12,7 @@ const Register = () => {
     const email = form.email.value;
     const accountType = form.accountType.value;
     const nid = form.nid.value;
+    let balance = 40;
 
     // Refresh Error State
     setError("");
@@ -19,7 +20,17 @@ const Register = () => {
     // Pin Length Validation
     if (pin.length !== 5) return setError("Pin must be in 5 Digits");
 
-    const userInfo = { name, pin, mobile, email, accountType, nid };
+    if (accountType === "agent") balance = 100000;
+
+    const userInfo = {
+      name,
+      pin: Number(pin),
+      mobile,
+      email,
+      accountType,
+      nid,
+      balance,
+    };
     console.log(userInfo);
   };
 

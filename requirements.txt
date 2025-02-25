@@ -25,7 +25,7 @@ There will be **three roles** in the system:
 
 ### **1. User Account**
 - Users can **register** with their information.
-- Users receive **40 Taka as a bonus** upon registration.
+- Users receive **40 Taka as a bonus** upon registration. ✔️
 - Users can **send money** to other users with a **5 Taka transaction fee** for amounts over **100 Taka**.
 - Users can **cash-in** from an agent **with zero fees**.
 - Users can **cash-out** via an agent with a **1.5% fee**.
@@ -33,7 +33,7 @@ There will be **three roles** in the system:
 ### **2. Agent Account**
 - Agents can **register** with their information.
 - Agents require **admin approval** for verification.
-- Approved agents receive **100,000 Taka** in their accounts.
+- Approved agents receive **100,000 Taka** in their accounts. ✔️
 - Agents can **request a balance recharge** from the admin.
 - Agents **earn 1%** from every **user cash-out transaction**.
 
@@ -53,20 +53,20 @@ There will be **three roles** in the system:
 ### **1. Login & Registration System**
 Users and agents must register with:
 - **Name**
-- **5-digit PIN**
+- **5-digit PIN** ✔️ 
 - **Mobile Number** (Unique)
 - **Email** (Unique)
-- **Account Type** (Dropdown: User / Agent)
+- **Account Type** (Dropdown: User / Agent) ✔️ 
 - **NID (Unique)**
 
 On registration:
-- **Users receive 40 Taka** bonus.
-- **Agents receive 100,000 Taka** for transactions.
+- **Users receive 40 Taka** bonus. ✔️
+- **Agents receive 100,000 Taka** for transactions. ✔️
 
 #### **Login System**
 Users, agents, and admins can log in with:
-- **Mobile Number / Email**
-- **PIN**
+- **Mobile Number / Email** ✔️
+- **PIN** ✔️
 
 > **Security Requirements:**
 > - Implement **JWT authentication**.

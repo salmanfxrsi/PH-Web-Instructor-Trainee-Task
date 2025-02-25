@@ -13,7 +13,7 @@ const Login = () => {
     const email = form.email.value;
 
     // Pin Length Validation
-    if (pin.length !== 5) return setError("Pin must be in 5 Digits");
+    if (pin.length !== 6) return setError("Pin must be in 6 Digits");
 
     const userInfo = { pin: Number(pin), email };
     console.log(userInfo);

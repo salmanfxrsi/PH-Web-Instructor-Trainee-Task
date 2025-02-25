@@ -1,9 +1,14 @@
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
   const [error, setError] = useState("");
+  const axiosPublic = useAxiosPublic();
+  const { signUp, setUser } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -18,7 +23,7 @@ const Register = () => {
     setError("");
 
     // Pin Length Validation
-    if (pin.length !== 5) return setError("Pin must be in 5 Digits");
+    if (pin.length !== 6) return setError("Pin must be in 6 Digits");
 
     if (accountType === "agent") balance = 100000;
 
@@ -31,7 +36,16 @@ const Register = () => {
       nid,
       balance,
     };
-    console.log(userInfo);
+
+    signUp(email, pin).then(async (result) => {
+      try {
+        await axiosPublic.post("/users", userInfo);
+        setUser(result.user);
+        toast.success("Registration Successful");
+      } catch (error) {
+        toast.error(error.message);
+      }
+    });
   };
 
   return (

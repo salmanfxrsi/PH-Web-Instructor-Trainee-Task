@@ -1,9 +1,10 @@
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/ph_logo.svg";
 import taka from "../../assets/taka.png";
-import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const user = false; // Simulating user authentication
+  const { user, logOut } = useAuth();
 
   return (
     <div className="flex flex-col lg:flex-row gap-2 justify-between items-center">
@@ -23,7 +24,7 @@ const Navbar = () => {
           <NavLink to="/">Cash Out</NavLink>
         </nav>
 
-        {/* Authentication and Profile Section */}
+        {/* User Section */}
         <div className="flex items-center gap-4">
           {user ? (
             <>
@@ -33,14 +34,30 @@ const Navbar = () => {
                 <h1 className="text-xl font-medium text-white">1000 BDT</h1>
               </div>
 
-              {/* Profile Picture */}
-              <div className="avatar avatar-online">
-                <div className="w-12 rounded-full">
-                  <img
-                    src="https://i.ibb.co.com/pBN034pP/images.jpg"
-                    alt="User Profile"
-                  />
+              {/* User Dropdown */}
+              <div className="dropdown dropdown-bottom dropdown-left">
+                <div tabIndex={0} role="button" className="m-1">
+                  <div className="avatar avatar-online">
+                    <div className="w-12 rounded-full">
+                      <img
+                        src="https://i.ibb.co.com/JW2wFB6p/images.jpg"
+                        alt="User Profile"
+                      />
+                    </div>
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="border border-purple-500 menu dropdown-content bg-[#010313] -mr-12 mt-6 rounded-box z-[1] w-52 p-2 text-white font-medium shadow-2xl"
+                >
+                  <NavLink to="/">Home</NavLink>
+                  <button
+                    onClick={logOut}
+                    className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 py-0.5 px-5 font-bold text-white rounded-sm uppercase mt-4"
+                  >
+                    Logout
+                  </button>
+                </ul>
               </div>
             </>
           ) : (

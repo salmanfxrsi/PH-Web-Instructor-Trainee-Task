@@ -37,7 +37,7 @@ const Navbar = () => {
               <div className="avatar avatar-online">
                 <div className="w-12 rounded-full">
                   <img
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src="https://i.ibb.co.com/pBN034pP/images.jpg"
                     alt="User Profile"
                   />
                 </div>

@@ -27,9 +27,12 @@ async function run() {
   const userCollection = client
     .db("PH-Web-Instructor-Trainee-Task")
     .collection("users");
-  const sendMoneyHistoryCollection = client
+  const transactionHistoryCollection = client
     .db("PH-Web-Instructor-Trainee-Task")
-    .collection("send-money-history");
+    .collection("transaction-history");
+  const systemCollection = client
+    .db("PH-Web-Instructor-Trainee-Task")
+    .collection("system-data");
 
   try {
     // Users-related API
@@ -111,13 +114,13 @@ async function run() {
         );
 
         // Step 4: Save the transaction in history
-        const saveHistory = await sendMoneyHistoryCollection.insertOne({
+        const saveHistory = await transactionHistoryCollection.insertOne({
+          userId: id,
           receiverMobile,
           amount,
-          mobile,
-          name,
-          email,
-          fee: transactionFee,
+          transactionFee,
+          timestamp: new Date(),
+          type: "send-money",
         });
 
         // Respond with the transaction history entry
@@ -125,6 +128,88 @@ async function run() {
       } catch (error) {
         console.error("Error sending money:", error);
         res.status(500).send({ message: "Internal server error." });
+      }
+    });
+
+    // CashOut Route
+    app.post("/cash-out/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const { amount, agentMobile, pin } = req.body;
+
+        // Validate required fields
+        if (!amount || !agentMobile || !pin) {
+          return res
+            .status(400)
+            .json({ error: "Amount, agentMobile, and PIN are required." });
+        }
+
+        // Transaction Fees
+        const agentFee = Math.floor(amount * 0.01); // 1% goes to agent
+        const adminFee = Math.floor(amount * 0.005); // 0.5% goes to admin
+        const totalDeduction = Math.floor(amount * 1.015); // 1.5% total deduction
+
+        // Step 1: Check if the user has sufficient balance
+        const user = await userCollection.findOne({ _id: new ObjectId(id) });
+        if (!user) return res.status(404).json({ error: "User not found." });
+
+        if (user.balance < totalDeduction) {
+          return res.status(400).json({ error: "Insufficient balance." });
+        }
+
+        // Step 2: Verify PIN (Assuming user PIN is stored in DB)
+        if (user.pin !== pin) {
+          return res.status(401).json({ error: "Invalid PIN." });
+        }
+
+        // Step 3: Deduct total amount (including fee) from user balance
+        await userCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $inc: { balance: -totalDeduction } }
+        );
+
+        // Step 4: Increase agent balance (amount + 1% commission)
+        const agentUpdate = await userCollection.updateOne(
+          { mobile: agentMobile, isAuthorized: true },
+          { $inc: { balance: amount + agentFee } }
+        );
+
+        if (agentUpdate.matchedCount === 0) {
+          return res
+            .status(400)
+            .json({ error: "Agent not authorized or not found." });
+        }
+
+        // Step 5: Add admin fee to admin account
+        const adminId = "67bd82d3aa609c3a9e2db95a";
+        await userCollection.updateOne(
+          { _id: new ObjectId(adminId) },
+          { $inc: { balance: adminFee } }
+        );
+
+        // Step 6: Update total money in the system
+        const totalMoneyId = "67bddd0cf7f7921d6859a5b4";
+        await systemCollection.updateOne(
+          { _id: new ObjectId(totalMoneyId) },
+          { $inc: { total_money: -totalDeduction + agentFee + adminFee } }
+        );
+
+        // Step 7: Save transaction history
+        const result = await transactionHistoryCollection.insertOne({
+          userId: id,
+          agentMobile,
+          amount,
+          agentFee,
+          adminFee,
+          totalDeduction,
+          timestamp: new Date(),
+          type: "cash-out",
+        });
+
+        res.send(result);
+      } catch (error) {
+        console.error("Cash-out error:", error);
+        res.status(500).json({ error: "Internal server error" });
       }
     });
 

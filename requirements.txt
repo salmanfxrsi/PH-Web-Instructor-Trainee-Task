@@ -74,13 +74,13 @@ Users, agents, and admins can log in with:
 > - Encrypt **PINs with hashing**.
 > - Users/agents can log in **from only one device at a time**.
 
-### **2. Send Money (User)**
-- Users can send money **(minimum 50 Taka)**.
-- Transactions **over 100 Taka** will incur a **5 Taka fee**.
-- Sender and receiver balances update accordingly.
-- **5 Taka fee** is added to the **admin account**.
-- System total money updates.
-- Users receive **a transaction notification**.
+### **2. Send Money (User)** ✔️
+- Users can send money **(minimum 50 Taka)**. ✔️
+- Transactions **over 100 Taka** will incur a **5 Taka fee**. ✔️
+- Sender and receiver balances update accordingly. ✔️
+- **5 Taka fee** is added to the **admin account**. ✔️
+- System total money updates. ✔️
+- Users receive **a transaction notification**. ✔️
 
 ### **3. Cash-Out (User)**
 - Users can cash-out through authorized agents.

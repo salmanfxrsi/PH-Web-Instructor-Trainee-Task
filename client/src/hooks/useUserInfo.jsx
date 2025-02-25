@@ -12,13 +12,13 @@ const useUserInfo = () => {
     return data;
   };
 
-  const { isLoading, data: userInfo } = useQuery({
+  const { isLoading, data: userInfo, refetch } = useQuery({
     queryKey: ["userInfo", user?.email],
     queryFn: fetchUserInfo,
     enabled: !!user?.email, // Prevents execution if no email is available
   });
 
-  return { isLoading, userInfo };
+  return { isLoading, userInfo, refetch };
 };
 
 export default useUserInfo;

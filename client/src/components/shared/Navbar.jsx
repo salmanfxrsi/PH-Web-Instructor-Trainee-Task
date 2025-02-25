@@ -24,7 +24,7 @@ const Navbar = () => {
   const navigationLinks = {
     user: (
       <>
-        <NavLink to="/">Send Money</NavLink>
+        <NavLink to="send-money">Send Money</NavLink>
         <NavLink to="/">Cash In</NavLink>
         <NavLink to="/">Cash Out</NavLink>
       </>
@@ -70,7 +70,7 @@ const Navbar = () => {
               {/* Balance Display */}
               <div className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 flex items-center rounded-3xl px-5 py-0.5 gap-1.5">
                 <img className="w-6 h-6" src={taka} alt="Taka Icon" />
-                <h1 className="text-xl font-medium text-white">1000 BDT</h1>
+                <h1 className="text-xl font-medium text-white">{userInfo?.balance}</h1>
               </div>
 
               {/* User Dropdown */}

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -27,6 +27,9 @@ async function run() {
   const userCollection = client
     .db("PH-Web-Instructor-Trainee-Task")
     .collection("users");
+  const sendMoneyHistoryCollection = client
+    .db("PH-Web-Instructor-Trainee-Task")
+    .collection("send-money-history");
 
   try {
     // Users-related API
@@ -58,6 +61,70 @@ async function run() {
       } catch (error) {
         console.error("Error fetching user:", error);
         res.status(500).json({ message: "Failed to fetch user", error });
+      }
+    });
+
+    // Send Money Route
+    app.post("/send-money/:id", async (req, res) => {
+      try {
+        const id = req.params.id; // Sender's user ID
+        const { receiverMobile, amount, mobile, name, email } = req.body;
+
+        // Define the transaction fee
+        const transactionFee = amount > 100 ? 5 : 0; // Apply fee if amount is greater than 100
+
+        // Step 1: Decrease sender's balance (amount + fee)
+        const totalDeduction = amount + transactionFee; // Total amount deducted from sender
+        const senderUpdate = await userCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $inc: { balance: -totalDeduction } } // Deduct amount + fee
+        );
+
+        // Check if sender balance was updated
+        if (senderUpdate.modifiedCount === 0) {
+          return res
+            .status(400)
+            .send({ message: "Failed to deduct amount from sender." });
+        }
+
+        // Step 2: Increase receiver's balance
+        const receiverUpdate = await userCollection.updateOne(
+          { mobile: receiverMobile },
+          { $inc: { balance: amount } } // Add amount to receiver
+        );
+
+        // Check if receiver was found and balance was updated
+        if (receiverUpdate.modifiedCount === 0) {
+          // If no receiver was found, revert sender's balance
+          await userCollection.updateOne(
+            { _id: new ObjectId(id) },
+            { $inc: { balance: totalDeduction } } // Revert sender's balance
+          );
+          return res.status(404).send({ message: "Receiver not found." });
+        }
+
+        // Step 3: Add fee to admin account
+        const adminId = "67bd82d3aa609c3a9e2db95a";
+        await userCollection.updateOne(
+          { _id: new ObjectId(adminId) },
+          { $inc: { balance: transactionFee } }
+        );
+
+        // Step 4: Save the transaction in history
+        const saveHistory = await sendMoneyHistoryCollection.insertOne({
+          receiverMobile,
+          amount,
+          mobile,
+          name,
+          email,
+          fee: transactionFee,
+        });
+
+        // Respond with the transaction history entry
+        res.send(saveHistory);
+      } catch (error) {
+        console.error("Error sending money:", error);
+        res.status(500).send({ message: "Internal server error." });
       }
     });
 

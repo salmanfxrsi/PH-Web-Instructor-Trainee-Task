@@ -3,10 +3,12 @@ import logo from "../../assets/ph_logo.svg";
 import taka from "../../assets/taka.png";
 import useAuth from "../../hooks/useAuth";
 import useUserInfo from "../../hooks/useUserInfo";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const { isLoading, userInfo } = useUserInfo();
+  const [showBalance, setShowBalance] = useState(false);
 
   if (isLoading) return null; // Prevent rendering until data is loaded
 
@@ -68,9 +70,14 @@ const Navbar = () => {
           {user ? (
             <>
               {/* Balance Display */}
-              <div className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 flex items-center rounded-3xl px-5 py-0.5 gap-1.5">
+              <div
+                onClick={() => setShowBalance(!showBalance)}
+                className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 flex items-center rounded-3xl px-5 py-0.5 gap-1.5"
+              >
                 <img className="w-6 h-6" src={taka} alt="Taka Icon" />
-                <h1 className="text-xl font-medium text-white">{userInfo?.balance}</h1>
+                <h1 className="text-xl font-medium text-white">
+                  {showBalance ? userInfo?.balance : "******"}
+                </h1>
               </div>
 
               {/* User Dropdown */}

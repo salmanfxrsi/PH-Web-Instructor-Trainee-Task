@@ -104,8 +104,8 @@ Users, agents, and admins can log in with:
 - Users receive **a transaction notification**.
 
 ### **5. Balance Inquiry**
-- Users and agents see their balances **blurred by default**.
-- Clicking the balance reveals it.
+- Users and agents see their balances **blurred by default**. ✔️
+- Clicking the balance reveals it.✔️
 - Admin sees **total system money** and **income**.
 
 ### **6. User Management (Admin)**

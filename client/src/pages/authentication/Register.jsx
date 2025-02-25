@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const Register = () => {
+  const [error, setError] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -8,6 +12,13 @@ const Register = () => {
     const email = form.email.value;
     const accountType = form.accountType.value;
     const nid = form.nid.value;
+
+    // Refresh Error State
+    setError("");
+
+    // Pin Length Validation
+    if (pin.length !== 5) return setError("Pin must be in 5 Digits");
+
     const userInfo = { name, pin, mobile, email, accountType, nid };
     console.log(userInfo);
   };
@@ -130,8 +141,11 @@ const Register = () => {
               />
             </div>
 
+            {/* Show Error */}
+            <p className="text-red-500 mt-1 font-black">{error}</p>
+
             {/* Register Button */}
-            <div className="form-control mt-4 col-span-2">
+            <div className="form-control mt-2 col-span-2">
               <button className="w-full bg-gradient-to-bl from-violet-500 to-fuchsia-500 py-2 px-5 font-bold text-white rounded-lg transition duration-300 hover:opacity-90">
                 Register Now
               </button>

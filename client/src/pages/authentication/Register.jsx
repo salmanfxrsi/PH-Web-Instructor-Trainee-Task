@@ -2,11 +2,13 @@ import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const [error, setError] = useState("");
   const axiosPublic = useAxiosPublic();
   const { signUp, setUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ const Register = () => {
         await axiosPublic.post("/users", userInfo);
         setUser(result.user);
         toast.success("Registration Successful");
+        navigate("/");
       } catch (error) {
         toast.error(error.message);
       }

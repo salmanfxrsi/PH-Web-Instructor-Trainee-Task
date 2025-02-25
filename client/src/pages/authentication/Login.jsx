@@ -1,28 +1,41 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { logIn, setUser } = useAuth();
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    // Refresh Error State
-    setError("");
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Reset error state
+
     const form = e.target;
-    const pin = form.pin.value;
     const email = form.email.value;
+    const pin = form.pin.value;
 
-    // Pin Length Validation
-    if (pin.length !== 6) return setError("Pin must be in 6 Digits");
+    // Validate PIN length
+    if (pin.length !== 6) {
+      setError("Pin must be 6 digits");
+      return;
+    }
 
-    const userInfo = { pin: Number(pin), email };
-    console.log(userInfo);
+    try {
+      const result = await logIn(email, Number(pin));
+      setUser(result.user);
+      toast.success("Login Successful");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
     <div className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        {/* Login Text Section */}
+        {/* Login Information Section */}
         <div className="text-center lg:text-left text-white">
           <h1 className="text-5xl font-bold">Login Now!</h1>
           <p className="py-6">
@@ -45,31 +58,31 @@ const Login = () => {
               <input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
                 name="email"
+                placeholder="Enter your email"
                 autoComplete="off"
                 className="input input-bordered bg-white rounded-lg border border-gray-300 font-serif mt-1"
                 required
               />
             </div>
 
-            {/* Password Input */}
+            {/* PIN Input */}
             <div className="form-control">
-              <label htmlFor="password" className="font-semibold text-white">
+              <label htmlFor="pin" className="font-semibold text-white">
                 PIN
               </label>
               <input
                 id="pin"
                 type="number"
-                placeholder="Enter your PIN"
                 name="pin"
+                placeholder="Enter your PIN"
                 className="input input-bordered bg-white rounded-lg border border-gray-300 mt-1"
                 required
               />
             </div>
 
-            {/* Show Error */}
-            <p className="text-red-500 mt-1 font-black">{error}</p>
+            {/* Error Message */}
+            {error && <p className="text-red-500 mt-1 font-black">{error}</p>}
 
             {/* Login Button */}
             <div className="form-control mt-2">

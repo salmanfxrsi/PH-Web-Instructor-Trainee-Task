@@ -50,10 +50,10 @@ There will be **three roles** in the system:
 ---
 ## **System Features**
 
-### **1. Login & Registration System**
+### **1. Login & Registration System** ✔️ 
 Users and agents must register with:
 - **Name**
-- **5-digit PIN** ✔️ 
+- **5-digit PIN** 
 - **Mobile Number** (Unique)
 - **Email** (Unique)
 - **Account Type** (Dropdown: User / Agent) ✔️ 

@@ -30,10 +30,35 @@ async function run() {
 
   try {
     // Users-related API
+
     app.post("/users", async (req, res) => {
-      const userInfo = req.body;
-      const result = await userCollection.insertOne(userInfo);
-      res.send(result);
+      try {
+        const userInfo = req.body;
+        const result = await userCollection.insertOne(userInfo);
+        res.status(201).json(result);
+      } catch (error) {
+        console.error("Error adding user:", error);
+        res.status(500).json({ message: "Failed to add user", error });
+      }
+    });
+
+    app.get("/user-info", async (req, res) => {
+      try {
+        const email = req.query.email;
+        if (!email) {
+          return res.status(400).json({ message: "Email is required" });
+        }
+
+        const user = await userCollection.findOne({ email });
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json(user);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        res.status(500).json({ message: "Failed to fetch user", error });
+      }
     });
 
     console.log("Successfully connected to MongoDB!");

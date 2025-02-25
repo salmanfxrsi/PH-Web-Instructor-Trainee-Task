@@ -37,6 +37,7 @@ const Register = () => {
       accountType,
       nid,
       balance,
+      status: "active",
     };
 
     signUp(email, pin).then(async (result) => {

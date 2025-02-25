@@ -33,21 +33,20 @@ const CashOut = () => {
     }
     if (enteredPin !== userInfo.pin) {
       return setError("PIN not matched");
-
     }
     try {
-        const { data } = await axiosPublic.post(
-          `/cash-out/${userInfo._id}`,
-          body
-        );
-        if (data.insertedId) {
-          refetch(); // Refetch user info
-          e.target.reset(); // Reset form fields
-          toast.success("Cash Out Successful")
-        }
-      } catch (error) {
-        toast.error(error.response.data.error); // Show error message
+      const { data } = await axiosPublic.post(
+        `/cash-out/${userInfo._id}`,
+        body
+      );
+      if (data.insertedId) {
+        refetch(); // Refetch user info
+        e.target.reset(); // Reset form fields
+        toast.success("Cash Out Successful");
       }
+    } catch (error) {
+      toast.error(error.response.data.error); // Show error message
+    }
   };
 
   return (

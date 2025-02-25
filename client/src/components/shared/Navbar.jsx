@@ -3,7 +3,7 @@ import taka from "../../assets/taka.png";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const user = true; // Simulating user authentication
+  const user = false; // Simulating user authentication
 
   return (
     <div className="flex flex-col lg:flex-row gap-2 justify-between items-center">

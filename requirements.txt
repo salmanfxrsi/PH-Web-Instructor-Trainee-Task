@@ -1,0 +1,158 @@
+# Web Instructor - Skill Assessment Task
+
+## Overview
+In this evaluation, you will demonstrate your skills and creativity by creating a simple **Mobile Financial Service (MFS) application**, similar to popular platforms like **bKash** or **Nagad**. 
+
+### **Your Task**
+- Design and implement essential features such as **user authentication, send money, cash-out, cash-in, and balance inquiries**.
+- Develop a user-friendly interface ensuring a **secure web environment**.
+- Your assessment will be evaluated based on **technical proficiency, understanding of company needs, and the ability to deliver an intuitive and efficient solution**.
+
+---
+## **Technology Stack**
+- **Node.js**
+- **React**
+- **Express.js**
+- **MongoDB**
+
+> **Bonus:** Using **Mongoose** on the back-end will be highly appreciated.
+
+---
+## **Account Features**
+
+### **Roles in the System**
+There will be **three roles** in the system:
+
+### **1. User Account**
+- Users can **register** with their information.
+- Users receive **40 Taka as a bonus** upon registration.
+- Users can **send money** to other users with a **5 Taka transaction fee** for amounts over **100 Taka**.
+- Users can **cash-in** from an agent **with zero fees**.
+- Users can **cash-out** via an agent with a **1.5% fee**.
+
+### **2. Agent Account**
+- Agents can **register** with their information.
+- Agents require **admin approval** for verification.
+- Approved agents receive **100,000 Taka** in their accounts.
+- Agents can **request a balance recharge** from the admin.
+- Agents **earn 1%** from every **user cash-out transaction**.
+
+### **3. Admin Account**
+- There will be **one admin** in this assessment.
+- Admin can **manage users** and **block users/agents**.
+- Admin can **verify and approve agents**.
+- Admin can **add money** to agents' accounts.
+- Admin **earns 0.5% of cash-out transactions** and **5 Taka per money operation**.
+- Admin **monitors the total money in the system**.
+
+> **Each transaction must generate a unique transaction ID, which will be stored in the database.**
+
+---
+## **System Features**
+
+### **1. Login & Registration System**
+Users and agents must register with:
+- **Name**
+- **5-digit PIN**
+- **Mobile Number** (Unique)
+- **Email** (Unique)
+- **Account Type** (Dropdown: User / Agent)
+- **NID (Unique)**
+
+On registration:
+- **Users receive 40 Taka** bonus.
+- **Agents receive 100,000 Taka** for transactions.
+
+#### **Login System**
+Users, agents, and admins can log in with:
+- **Mobile Number / Email**
+- **PIN**
+
+> **Security Requirements:**
+> - Implement **JWT authentication**.
+> - Ensure **each route is secure**.
+> - Encrypt **PINs with hashing**.
+> - Users/agents can log in **from only one device at a time**.
+
+### **2. Send Money (User)**
+- Users can send money **(minimum 50 Taka)**.
+- Transactions **over 100 Taka** will incur a **5 Taka fee**.
+- Sender and receiver balances update accordingly.
+- **5 Taka fee** is added to the **admin account**.
+- System total money updates.
+- Users receive **a transaction notification**.
+
+### **3. Cash-Out (User)**
+- Users can cash-out through authorized agents.
+- **1.5% fee** applies to cash-out transactions.
+- Users must provide **amount and PIN**.
+- After transaction:
+  - **User balance** updates.
+  - **Agent balance** updates.
+  - **Agent earns 1%** of the transaction.
+  - **Admin earns 0.5%** of the transaction.
+  - **Total money in the system updates**.
+- Users receive **a transaction notification**.
+
+### **4. Cash-In (Agent)**
+- Users can cash-in via authorized agents.
+- Agents must enter **amount and PIN**.
+- **No transaction fee** applies.
+- After transaction:
+  - **User balance updates**.
+  - **Total money in the system updates**.
+- Users receive **a transaction notification**.
+
+### **5. Balance Inquiry**
+- Users and agents see their balances **blurred by default**.
+- Clicking the balance reveals it.
+- Admin sees **total system money** and **income**.
+
+### **6. User Management (Admin)**
+- Admin can **view all users and agents**.
+- Admin can **block users/agents**.
+- Clicking a user shows **their transaction history**.
+- Admin can **search users by phone number**.
+
+### **7. Transaction History**
+- **Users & agents** can view their **last 100 transactions**.
+- **Admin** can view detailed transactions of any user/agent.
+
+### **8. Agent Approval (Admin)**
+- Admin views **pending agent approval requests**.
+- Admin can **approve/reject** agents.
+- Approvals are shown in a **tabular format**.
+
+---
+## **Bonus Features (Optional, but Encouraged)**
+
+### **1. Cash Request (Agent)**
+- Agents can **request balance recharge** from admin.
+- **Upon admin approval**, **100,000 Taka** is added to the agent's account.
+
+### **2. Withdraw Request (Agent)**
+- Agents can **request withdrawal** from admin.
+- **Upon admin approval**, agent's **income updates**.
+
+### **3. Withdraw Approval (Admin)**
+- Admin can **approve/reject** agent withdrawal requests.
+- After approval, **agent income updates**.
+
+---
+## **Submission Guidelines**
+
+### **Deadline:**
+📅 **Feb 27, 2025, 11:59 AM (Morning Time)**
+
+### **Submission Form:**
+📩 Submit your completed task via **Google Form**.
+
+### **Submission Rules:**
+- **Multiple Submissions:** Only the **first submission** will be considered.
+- **Task Assistance:** Seeking help from **Programming Hero team members is strictly prohibited**. Violating this rule will result in immediate rejection.
+
+---
+## **Final Notes**
+If you have any questions or need clarifications, feel free to reach out. We are excited to see your innovative solution for this challenge!
+
+Good luck! 🚀

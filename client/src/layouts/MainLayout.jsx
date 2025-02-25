@@ -10,7 +10,7 @@ const MainLayout = () => {
       </nav>
 
       {/* Main Content Area */}
-      <main>
+      <main className="py-24">
         <Outlet />
       </main>
 

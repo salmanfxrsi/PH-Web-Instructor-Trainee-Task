@@ -214,6 +214,74 @@ async function run() {
       }
     });
 
+    // CashIn Route
+    app.post("/cash-in/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const { amount, userMobile, pin, mobile } = req.body;
+
+        // Validate required fields
+        if (!amount || !userMobile || !pin) {
+          return res
+            .status(400)
+            .json({ error: "Amount, agentMobile, and PIN are required." });
+        }
+
+        // Step 1: Check if the user has sufficient balance
+        const agent = await userCollection.findOne({ _id: new ObjectId(id) });
+        if (!agent) return res.status(404).json({ error: "User not found." });
+
+        if (agent.balance < amount) {
+          return res.status(400).json({ error: "Insufficient balance." });
+        }
+
+        // Step 2: Verify PIN 
+        if (agent.pin !== pin) {
+          return res.status(401).json({ error: "Invalid PIN." });
+        }
+
+        // Step 3: Deduct total amount from agent balance
+        const agentUpdate = await userCollection.updateOne(
+          { _id: new ObjectId(id), isAuthorized: true },
+          { $inc: { balance: -amount } }
+        );
+
+        if (agentUpdate.matchedCount === 0) {
+          return res
+            .status(400)
+            .json({ error: "Agent not authorized or not found." });
+        }
+
+
+        // Step 4: Increase user balance
+        await userCollection.updateOne(
+          { mobile: userMobile },
+          { $inc: { balance: amount } }
+        );
+
+        // Step 6: Update total money in the system
+        await systemCollection.updateOne(
+          { _id: new ObjectId(totalMoneyId) },
+          { $inc: { total_money: amount } }
+        );
+
+        // Step 7: Save transaction history
+        const result = await transactionHistoryCollection.insertOne({
+          userId: id,
+          userMobile,
+          amount,
+          agentMobile: mobile,
+          timestamp: new Date(),
+          type: "cash-in",
+        });
+
+        res.send(result);
+      } catch (error) {
+        console.error("Cash-in error:", error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    });
+
     // CashOut Route
     app.post("/cash-out/:id", async (req, res) => {
       try {

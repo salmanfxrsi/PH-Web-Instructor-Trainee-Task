@@ -103,19 +103,19 @@ Users, agents, and admins can log in with:
   - **Total money in the system updates**.
 - Users receive **a transaction notification**.
 
-### **5. Balance Inquiry**
+### **5. Balance Inquiry** ✔️
 - Users and agents see their balances **blurred by default**. ✔️
 - Clicking the balance reveals it.✔️
 - Admin sees **total system money** and **income**. ✔️
 
 ### **6. User Management (Admin)**
-- Admin can **view all users and agents**.
+- Admin can **view all users and agents**. ✔️
 - Admin can **block users/agents**. ✔️
-- Clicking a user shows **their transaction history**.
+- Clicking a user shows **their transaction history**. ✔️
 - Admin can **search users by phone number**.
 
 ### **7. Transaction History**
-- **Users & agents** can view their **last 100 transactions**.
+- **Users & agents** can view their **last 100 transactions**. ✔️
 - **Admin** can view detailed transactions of any user/agent. ✔️
 
 ### **8. Agent Approval (Admin)**

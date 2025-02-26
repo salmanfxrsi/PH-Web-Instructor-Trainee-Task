@@ -75,6 +75,8 @@ async function run() {
         const { id } = req.params;
         const transactionHistory = await transactionHistoryCollection
           .find({ userId: id })
+          .sort({ timestamp: -1 })
+          .limit(100)
           .toArray();
 
         res.send(transactionHistory);

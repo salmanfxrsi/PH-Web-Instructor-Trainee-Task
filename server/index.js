@@ -39,6 +39,16 @@ async function run() {
   try {
     // Users-related API
 
+    app.get("/users", async (req, res) => {
+      try {
+        const users = await userCollection.find().toArray();
+        res.status(200).send(users);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+    });
+
     app.post("/users", async (req, res) => {
       try {
         const userInfo = req.body;

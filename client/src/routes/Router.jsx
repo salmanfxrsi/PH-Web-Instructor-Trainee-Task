@@ -13,6 +13,7 @@ import UserHistory from "../pages/admin/UserHistory";
 import AgentHistory from "../pages/admin/AgentHistory";
 import Home from "../pages/home/Home";
 import PrivateRoutes from "./PrivateRoutes";
+import UserRoutes from "./UserRoutes";
 
 const Router = () => {
   return (
@@ -32,7 +33,9 @@ const Router = () => {
           path="send-money"
           element={
             <PrivateRoutes>
-              <SendMoney />
+              <UserRoutes>
+                <SendMoney />
+              </UserRoutes>
             </PrivateRoutes>
           }
         />
@@ -40,7 +43,9 @@ const Router = () => {
           path="cash-out"
           element={
             <PrivateRoutes>
-              <CashOut />
+              <UserRoutes>
+                <CashOut />
+              </UserRoutes>
             </PrivateRoutes>
           }
         />
@@ -48,7 +53,9 @@ const Router = () => {
           path="user-transaction-history"
           element={
             <PrivateRoutes>
-              <UserTransactionHistory />
+              <UserRoutes>
+                <UserTransactionHistory />
+              </UserRoutes>
             </PrivateRoutes>
           }
         />

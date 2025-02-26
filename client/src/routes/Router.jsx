@@ -10,6 +10,7 @@ import SystemBalanceOverview from "../pages/admin/SystemBalanceOverview";
 import UserTransactionHistory from "../pages/user/UserTransactionHistory";
 import UserAgentManagement from "../pages/admin/user agent management/UserAgentManagement";
 import UserHistory from "../pages/admin/UserHistory";
+import AgentHistory from "../pages/admin/AgentHistory";
 
 const Router = () => {
   return (
@@ -32,6 +33,7 @@ const Router = () => {
         <Route path="system-balance-overview" element={<SystemBalanceOverview />} />
         <Route path="user-agent-management" element={<UserAgentManagement />} />
         <Route path="user-history/:id" element={<UserHistory />} />
+        <Route path="agent-history/:mobile" element={<AgentHistory />} />
       </Route>
     </Routes>
   );

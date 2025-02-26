@@ -97,7 +97,11 @@ const UserAgentManagement = () => {
                 </th>
                 <th>
                   <Link
-                    to={`/user-history/${user._id}`}
+                    to={
+                      user?.accountType === "user"
+                        ? `/user-history/${user._id}`
+                        : `/agent-history/${user?.mobile}`
+                    }
                     className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 py-1 px-5 font-bold text-white rounded-sm cursor-pointer text-[10px]"
                   >
                     See History

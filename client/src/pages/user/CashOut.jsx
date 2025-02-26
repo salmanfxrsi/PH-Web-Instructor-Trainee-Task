@@ -2,11 +2,13 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import useUserInfo from "../../hooks/useUserInfo";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const CashOut = () => {
   const [error, setError] = useState("");
   const { isLoading, userInfo, refetch } = useUserInfo();
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   // Show loading state
   if (isLoading) return null; // Return null while loading
@@ -43,6 +45,7 @@ const CashOut = () => {
         refetch(); // Refetch user info
         e.target.reset(); // Reset form fields
         toast.success("Cash Out Successful");
+        navigate('/user-transition-history')
       }
     } catch (error) {
       toast.error(error.response.data.error); // Show error message

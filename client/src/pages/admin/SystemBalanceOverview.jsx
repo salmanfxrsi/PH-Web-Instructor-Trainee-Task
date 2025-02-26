@@ -21,7 +21,7 @@ const SystemBalanceOverview = () => {
   if (userLoading || balanceLoading) return null;
 
   return (
-    <div className="flex justify-center">
+    <div className="w-11/12 mx-auto flex justify-center">
       <div className="stats bg-gradient-to-bl from-violet-500 to-fuchsia-500 text-white p-5 rounded-lg shadow-lg">
         {/* Balance Check Credential */}
         <div className="stat">

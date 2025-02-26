@@ -7,6 +7,7 @@ import CashOut from "../pages/user/CashOut";
 import About from "../pages/common/About";
 import Contact from "../pages/common/Contact";
 import SystemBalanceOverview from "../pages/admin/SystemBalanceOverview";
+import UserTransactionHistory from "../pages/user/UseTransactionHistory";
 
 const Router = () => {
   return (
@@ -23,9 +24,16 @@ const Router = () => {
         {/* User Routes */}
         <Route path="send-money" element={<SendMoney />} />
         <Route path="cash-out" element={<CashOut />} />
+        <Route
+          path="user-transition-history"
+          element={<UserTransactionHistory />}
+        />
 
         {/* Admin Routes */}
-        <Route path="system-balance-overview" element={<SystemBalanceOverview />} />
+        <Route
+          path="system-balance-overview"
+          element={<SystemBalanceOverview />}
+        />
       </Route>
     </Routes>
   );

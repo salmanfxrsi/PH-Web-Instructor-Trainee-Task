@@ -2,11 +2,13 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import useUserInfo from "../../hooks/useUserInfo";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const SendMoney = () => {
   const [error, setError] = useState("");
   const { isLoading, userInfo, refetch } = useUserInfo();
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   // Show loading state
   if (isLoading) return null; // Return null while loading
@@ -43,7 +45,8 @@ const SendMoney = () => {
       if (data.insertedId) {
         refetch(); // Refetch user info
         e.target.reset(); // Reset form fields
-        toast.success("Send Money Successful")
+        toast.success("Send Money Successful");
+        navigate('/user-transition-history')
       }
     } catch (error) {
       toast.error(error.response.data.message); // Show error message

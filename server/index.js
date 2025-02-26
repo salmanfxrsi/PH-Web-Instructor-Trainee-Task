@@ -69,6 +69,21 @@ async function run() {
       }
     });
 
+    // Transaction History of a Specific User
+    app.get("/transaction-history-specific-user/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const transactionHistory = await transactionHistoryCollection
+          .find({ userId: id })
+          .toArray();
+
+        res.send(transactionHistory);
+      } catch (error) {
+        console.error("Error fetching transaction history:", error);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+    });
+
     // Endpoint to fetch total money in the system
     app.get("/system-balance", async (req, res) => {
       try {

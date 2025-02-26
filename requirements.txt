@@ -110,13 +110,13 @@ Users, agents, and admins can log in with:
 
 ### **6. User Management (Admin)**
 - Admin can **view all users and agents**.
-- Admin can **block users/agents**.
+- Admin can **block users/agents**. ✔️
 - Clicking a user shows **their transaction history**.
 - Admin can **search users by phone number**.
 
 ### **7. Transaction History**
 - **Users & agents** can view their **last 100 transactions**.
-- **Admin** can view detailed transactions of any user/agent.
+- **Admin** can view detailed transactions of any user/agent. ✔️
 
 ### **8. Agent Approval (Admin)**
 - Admin views **pending agent approval requests**.

@@ -10,7 +10,7 @@ PH PayGO is a secure and user-friendly Mobile Financial Service (MFS) applicatio
 ## 🚀 Live Links
 
 - **Client Live Link**: [Client Deployment](#)
-- **Server Live Link**: [Server Deployment](#)
+- **Server Live Link**: [Server Deployment](https://phpaygo.vercel.app/)
 
 ## 🌟 Features
 

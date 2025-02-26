@@ -30,7 +30,7 @@ const UserAgentManagement = () => {
         }`
       );
       refetch();
-      toast.success('Status Changed')
+      toast.success("Status Changed");
     } catch (error) {
       console.log(error);
     }
@@ -96,7 +96,10 @@ const UserAgentManagement = () => {
                   </button>
                 </th>
                 <th>
-                  <Link className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 py-1 px-5 font-bold text-white rounded-sm cursor-pointer text-[10px]">
+                  <Link
+                    to={`/user-history/${user._id}`}
+                    className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 py-1 px-5 font-bold text-white rounded-sm cursor-pointer text-[10px]"
+                  >
                     See History
                   </Link>
                 </th>

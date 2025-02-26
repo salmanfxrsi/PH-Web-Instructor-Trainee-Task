@@ -3,7 +3,7 @@ const About = () => {
     <div className="container mx-auto px-6 py-12">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl font-bold text-white mb-6">
-          About the Conference
+          About PH PayGO
         </h1>
         <p className="text-white leading-relaxed">
           PH PayGO is a revolutionary mobile banking platform designed to

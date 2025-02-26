@@ -46,7 +46,7 @@ const SendMoney = () => {
         refetch(); // Refetch user info
         e.target.reset(); // Reset form fields
         toast.success("Send Money Successful");
-        navigate('/user-transition-history')
+        navigate('/user-transaction-history')
       }
     } catch (error) {
       toast.error(error.response.data.message); // Show error message

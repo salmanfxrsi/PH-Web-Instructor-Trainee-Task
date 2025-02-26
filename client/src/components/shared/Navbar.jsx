@@ -33,7 +33,7 @@ const Navbar = () => {
       <>
         <NavLink to="/">Balance Inquiry</NavLink>
         <NavLink to="/">Cash-In Requests</NavLink>
-        <NavLink to="/">Cash-Out Transactions</NavLink>
+        <NavLink to="agent-cash-out-transaction">Cash-Out Transactions</NavLink>
         <NavLink to="/">Earnings Overview</NavLink>
         <NavLink to="/">Request Balance Recharge</NavLink>
       </>

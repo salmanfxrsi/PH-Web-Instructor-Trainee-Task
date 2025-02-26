@@ -218,7 +218,7 @@ async function run() {
     app.post("/cash-out/:id", async (req, res) => {
       try {
         const id = req.params.id;
-        const { amount, agentMobile, pin } = req.body;
+        const { amount, agentMobile, pin, mobile } = req.body;
 
         // Validate required fields
         if (!amount || !agentMobile || !pin) {
@@ -280,6 +280,7 @@ async function run() {
           userId: id,
           agentMobile,
           amount,
+          userMobile: mobile,
           agentFee,
           adminFee,
           totalDeduction,

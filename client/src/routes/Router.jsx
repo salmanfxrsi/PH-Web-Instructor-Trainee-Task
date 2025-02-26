@@ -15,6 +15,8 @@ import Home from "../pages/home/Home";
 import PrivateRoutes from "./PrivateRoutes";
 import UserRoutes from "./UserRoutes";
 import AdminRoutes from "./AdminRoutes";
+import AgentRoutes from "./AgentRoutes";
+import AgentCashOutTransaction from "../pages/agent/AgentCashOutTransaction";
 
 const Router = () => {
   return (
@@ -57,6 +59,18 @@ const Router = () => {
               <UserRoutes>
                 <UserTransactionHistory />
               </UserRoutes>
+            </PrivateRoutes>
+          }
+        />
+
+        {/* Private Agent Routes */}
+        <Route
+          path="agent-cash-out-transaction"
+          element={
+            <PrivateRoutes>
+              <AgentRoutes>
+                <AgentCashOutTransaction />
+              </AgentRoutes>
             </PrivateRoutes>
           }
         />

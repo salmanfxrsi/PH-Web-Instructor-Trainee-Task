@@ -45,7 +45,7 @@ const CashOut = () => {
         refetch(); // Refetch user info
         e.target.reset(); // Reset form fields
         toast.success("Cash Out Successful");
-        navigate('/user-transition-history')
+        navigate('/user-transaction-history')
       }
     } catch (error) {
       toast.error(error.response.data.error); // Show error message

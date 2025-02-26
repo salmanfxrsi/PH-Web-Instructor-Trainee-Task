@@ -33,6 +33,8 @@ async function run() {
   const systemCollection = client
     .db("PH-Web-Instructor-Trainee-Task")
     .collection("system-data");
+  const adminId = "67be933acc3e6f41e69bdd3f";
+  const totalMoneyId = "67bddd0cf7f7921d6859a5b4";
 
   try {
     // Users-related API
@@ -64,6 +66,24 @@ async function run() {
       } catch (error) {
         console.error("Error fetching user:", error);
         res.status(500).json({ message: "Failed to fetch user", error });
+      }
+    });
+
+    // Endpoint to fetch total money in the system
+    app.get("/system-balance", async (req, res) => {
+      try {
+        const systemBalance = await systemCollection.findOne({
+          _id: new ObjectId(totalMoneyId),
+        });
+
+        if (!systemBalance) {
+          return res.status(404).json({ message: "System balance not found" });
+        }
+
+        res.json(systemBalance);
+      } catch (error) {
+        console.error("Error fetching system balance:", error);
+        res.status(500).json({ message: "Internal server error" });
       }
     });
 
@@ -107,7 +127,6 @@ async function run() {
         }
 
         // Step 3: Add fee to admin account
-        const adminId = "67bd82d3aa609c3a9e2db95a";
         await userCollection.updateOne(
           { _id: new ObjectId(adminId) },
           { $inc: { balance: transactionFee } }
@@ -181,14 +200,12 @@ async function run() {
         }
 
         // Step 5: Add admin fee to admin account
-        const adminId = "67bd82d3aa609c3a9e2db95a";
         await userCollection.updateOne(
           { _id: new ObjectId(adminId) },
           { $inc: { balance: adminFee } }
         );
 
         // Step 6: Update total money in the system
-        const totalMoneyId = "67bddd0cf7f7921d6859a5b4";
         await systemCollection.updateOne(
           { _id: new ObjectId(totalMoneyId) },
           { $inc: { total_money: -totalDeduction + agentFee + adminFee } }

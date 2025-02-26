@@ -42,7 +42,7 @@ There will be **three roles** in the system:
 - Admin can **manage users** and **block users/agents**.
 - Admin can **verify and approve agents**.
 - Admin can **add money** to agents' accounts.
-- Admin **earns 0.5% of cash-out transactions** and **5 Taka per money operation**.
+- Admin **earns 0.5% of cash-out transactions** and **5 Taka per money operation**. ✔️
 - Admin **monitors the total money in the system**.
 
 > **Each transaction must generate a unique transaction ID, which will be stored in the database.**

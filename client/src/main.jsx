@@ -18,7 +18,29 @@ createRoot(rootElement).render(
           <Router />
         </BrowserRouter>
         {/* react-hot-toast */}
-        <Toaster />
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          gutter={8}
+          containerClassName=""
+          containerStyle={{}}
+          toastOptions={{
+            className: "",
+            duration: 5000,
+            removeDelay: 1000,
+            style: {
+              background: "linear-gradient(to bottom left, #8b5cf6, #d946ef)",
+              color: "#ffffff",
+            },
+            success: {
+              duration: 3000,
+              iconTheme: {
+                primary: "",
+                secondary: "white",
+              },
+            },
+          }}
+        />
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

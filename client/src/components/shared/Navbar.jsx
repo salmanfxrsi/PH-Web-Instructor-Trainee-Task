@@ -40,7 +40,7 @@ const Navbar = () => {
     ),
     admin: (
       <>
-        <NavLink to="/">User & Agent Management</NavLink>
+        <NavLink to="user-agent-management">User & Agent Management</NavLink>
         <NavLink to="/">Agent Approval Requests</NavLink>
         <NavLink to="/">Transactions Monitoring</NavLink>
         <NavLink to="system-balance-overview">System Balance Overview</NavLink>

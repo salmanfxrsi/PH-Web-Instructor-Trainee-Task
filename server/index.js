@@ -79,6 +79,26 @@ async function run() {
       }
     });
 
+    app.patch("/update-user-status/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const status = req.query.status;
+
+        if (!status) {
+          return res.status(400).send({ message: "Status is required" });
+        }
+
+        const result = await userCollection.updateOne(
+          { _id: new ObjectId(id) }, 
+          { $set: { status: status } }
+        );
+
+        res.send(result);
+      } catch (error) {
+        res.status(500).send({ message: "Internal Server Error", error });
+      }
+    });
+
     // Transaction History of a Specific User
     app.get("/transaction-history-specific-user/:id", async (req, res) => {
       try {

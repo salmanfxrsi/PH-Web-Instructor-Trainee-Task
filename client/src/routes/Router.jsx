@@ -11,12 +11,14 @@ import UserTransactionHistory from "../pages/user/UserTransactionHistory";
 import UserAgentManagement from "../pages/admin/user agent management/UserAgentManagement";
 import UserHistory from "../pages/admin/UserHistory";
 import AgentHistory from "../pages/admin/AgentHistory";
+import Home from "../pages/home/Home";
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         {/* Common Routes */}
+        <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
 

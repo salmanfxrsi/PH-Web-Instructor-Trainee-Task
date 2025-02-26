@@ -26,7 +26,7 @@ const Navbar = () => {
       <>
         <NavLink to="send-money">Send Money</NavLink>
         <NavLink to="cash-out">Cash Out</NavLink>
-        <NavLink to="user-transition-history">Transition History</NavLink>
+        <NavLink to="user-transaction-history">Transition History</NavLink>
       </>
     ),
     agent: (

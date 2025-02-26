@@ -12,6 +12,7 @@ import UserAgentManagement from "../pages/admin/user agent management/UserAgentM
 import UserHistory from "../pages/admin/UserHistory";
 import AgentHistory from "../pages/admin/AgentHistory";
 import Home from "../pages/home/Home";
+import PrivateRoutes from "./PrivateRoutes";
 
 const Router = () => {
   return (
@@ -26,16 +27,65 @@ const Router = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
-        {/* User Routes */}
-        <Route path="send-money" element={<SendMoney />} />
-        <Route path="cash-out" element={<CashOut />} />
-        <Route path="user-transaction-history" element={<UserTransactionHistory />} />
+        {/* Private User Routes */}
+        <Route
+          path="send-money"
+          element={
+            <PrivateRoutes>
+              <SendMoney />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="cash-out"
+          element={
+            <PrivateRoutes>
+              <CashOut />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="user-transaction-history"
+          element={
+            <PrivateRoutes>
+              <UserTransactionHistory />
+            </PrivateRoutes>
+          }
+        />
 
-        {/* Admin Routes */}
-        <Route path="system-balance-overview" element={<SystemBalanceOverview />} />
-        <Route path="user-agent-management" element={<UserAgentManagement />} />
-        <Route path="user-history/:id" element={<UserHistory />} />
-        <Route path="agent-history/:mobile" element={<AgentHistory />} />
+        {/* Private Admin Routes */}
+        <Route
+          path="system-balance-overview"
+          element={
+            <PrivateRoutes>
+              <SystemBalanceOverview />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="user-agent-management"
+          element={
+            <PrivateRoutes>
+              <UserAgentManagement />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="user-history/:id"
+          element={
+            <PrivateRoutes>
+              <UserHistory />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="agent-history/:mobile"
+          element={
+            <PrivateRoutes>
+              <AgentHistory />
+            </PrivateRoutes>
+          }
+        />
       </Route>
     </Routes>
   );

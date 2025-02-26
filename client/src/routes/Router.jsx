@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/authentication/Login";
 import Register from "../pages/authentication/Register";
@@ -19,23 +19,17 @@ const Router = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
 
-        {/* Auth Related Routes */}
+        {/* Auth Routes */}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
         {/* User Routes */}
         <Route path="send-money" element={<SendMoney />} />
         <Route path="cash-out" element={<CashOut />} />
-        <Route
-          path="user-transition-history"
-          element={<UserTransactionHistory />}
-        />
+        <Route path="user-transaction-history" element={<UserTransactionHistory />} />
 
         {/* Admin Routes */}
-        <Route
-          path="system-balance-overview"
-          element={<SystemBalanceOverview />}
-        />
+        <Route path="system-balance-overview" element={<SystemBalanceOverview />} />
         <Route path="user-agent-management" element={<UserAgentManagement />} />
         <Route path="user-history/:id" element={<UserHistory />} />
       </Route>

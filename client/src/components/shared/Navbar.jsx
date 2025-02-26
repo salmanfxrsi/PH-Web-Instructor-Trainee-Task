@@ -7,10 +7,8 @@ import { useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const { isLoading, userInfo } = useUserInfo();
+  const { userInfo } = useUserInfo();
   const [showBalance, setShowBalance] = useState(false);
-
-  if (isLoading) return null; // Prevent rendering until data is loaded
 
   // Common navigation links
   const commonNavigationLink = (

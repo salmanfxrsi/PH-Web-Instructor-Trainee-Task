@@ -14,6 +14,7 @@ import AgentHistory from "../pages/admin/AgentHistory";
 import Home from "../pages/home/Home";
 import PrivateRoutes from "./PrivateRoutes";
 import UserRoutes from "./UserRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 const Router = () => {
   return (
@@ -65,7 +66,9 @@ const Router = () => {
           path="system-balance-overview"
           element={
             <PrivateRoutes>
-              <SystemBalanceOverview />
+              <AdminRoutes>
+                <SystemBalanceOverview />
+              </AdminRoutes>
             </PrivateRoutes>
           }
         />
@@ -73,7 +76,9 @@ const Router = () => {
           path="user-agent-management"
           element={
             <PrivateRoutes>
-              <UserAgentManagement />
+              <AdminRoutes>
+                <UserAgentManagement />
+              </AdminRoutes>
             </PrivateRoutes>
           }
         />
@@ -81,7 +86,9 @@ const Router = () => {
           path="user-history/:id"
           element={
             <PrivateRoutes>
-              <UserHistory />
+              <AdminRoutes>
+                <UserHistory />
+              </AdminRoutes>
             </PrivateRoutes>
           }
         />
@@ -89,7 +96,9 @@ const Router = () => {
           path="agent-history/:mobile"
           element={
             <PrivateRoutes>
-              <AgentHistory />
+              <AdminRoutes>
+                <AgentHistory />
+              </AdminRoutes>
             </PrivateRoutes>
           }
         />

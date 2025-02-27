@@ -31,6 +31,7 @@ const Navbar = () => {
     ),
     agent: (
       <>
+        <NavLink to="cash-in">Cash In</NavLink>
         <NavLink to="/">Balance Inquiry</NavLink>
         <NavLink to="/">Cash-In Requests</NavLink>
         <NavLink to="agent-cash-out-transaction">Cash-Out Transactions</NavLink>

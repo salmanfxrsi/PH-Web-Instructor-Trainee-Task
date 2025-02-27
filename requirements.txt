@@ -26,16 +26,16 @@ There will be **three roles** in the system:
 ### **1. User Account**
 - Users can **register** with their information.
 - Users receive **40 Taka as a bonus** upon registration. ✔️
-- Users can **send money** to other users with a **5 Taka transaction fee** for amounts over **100 Taka**.
+- Users can **send money** to other users with a **5 Taka transaction fee** for amounts over **100 Taka**. ✔️
 - Users can **cash-in** from an agent **with zero fees**.
-- Users can **cash-out** via an agent with a **1.5% fee**.
+- Users can **cash-out** via an agent with a **1.5% fee**. ✔️
 
 ### **2. Agent Account**
 - Agents can **register** with their information.
 - Agents require **admin approval** for verification.
 - Approved agents receive **100,000 Taka** in their accounts. ✔️
 - Agents can **request a balance recharge** from the admin.
-- Agents **earn 1%** from every **user cash-out transaction**.
+- Agents **earn 1%** from every **user cash-out transaction**. ✔️
 
 ### **3. Admin Account**
 - There will be **one admin** in this assessment.
@@ -43,7 +43,7 @@ There will be **three roles** in the system:
 - Admin can **verify and approve agents**.
 - Admin can **add money** to agents' accounts.
 - Admin **earns 0.5% of cash-out transactions** and **5 Taka per money operation**. ✔️
-- Admin **monitors the total money in the system**.
+- Admin **monitors the total money in the system**. ✔️
 
 > **Each transaction must generate a unique transaction ID, which will be stored in the database.**
 

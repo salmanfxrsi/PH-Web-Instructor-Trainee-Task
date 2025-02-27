@@ -17,6 +17,7 @@ import UserRoutes from "./UserRoutes";
 import AdminRoutes from "./AdminRoutes";
 import AgentRoutes from "./AgentRoutes";
 import AgentCashOutTransaction from "../pages/agent/AgentCashOutTransaction";
+import CashIn from "../pages/agent/CashIn";
 
 const Router = () => {
   return (
@@ -70,6 +71,16 @@ const Router = () => {
             <PrivateRoutes>
               <AgentRoutes>
                 <AgentCashOutTransaction />
+              </AgentRoutes>
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="cash-in"
+          element={
+            <PrivateRoutes>
+              <AgentRoutes>
+                <CashIn />
               </AgentRoutes>
             </PrivateRoutes>
           }

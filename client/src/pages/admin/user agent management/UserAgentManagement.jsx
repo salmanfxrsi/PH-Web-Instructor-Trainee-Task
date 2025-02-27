@@ -2,24 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const UserAgentManagement = () => {
   const axiosSecure = useAxiosSecure();
+  const [search, setSearch] = useState("");
 
   // Fetching Transaction History
-  const {
-    isLoading: isUsersLoading,
-    data: users = [],
-    refetch,
-  } = useQuery({
-    queryKey: ["users"],
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users", search],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users");
+      const { data } = await axiosSecure.get(`/users?search=${search}`);
       return data;
     },
   });
-
-  if (isUsersLoading) return null;
 
   //   Handle Status
   const handleStatus = async (id, status) => {
@@ -37,7 +33,29 @@ const UserAgentManagement = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="w-11/12 lg:container mx-auto">
+      {/* Search Section */}
+      <div className="mb-16 flex gap-10 justify-between items-center">
+        {/* Search Bar */}
+        <div className="flex items-center w-[500px] rounded-lg border-2 border-white">
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full py-2 outline-none text-lg text-white px-4"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <div className="flex gap-6 justify-center">
+          {/* Reset Button */}
+          <button
+            onClick={() => setSearch("")}
+            className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 px-10 font-bold text-white rounded-sm uppercase py-4"
+          >
+            <h1>Reset</h1>
+          </button>
+        </div>
+      </div>
       <div className="overflow-x-auto text-white bg-black">
         <table className="table">
           {/* Table Head */}

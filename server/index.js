@@ -40,12 +40,30 @@ async function run() {
     // Users-related API
 
     app.get("/users", async (req, res) => {
+      const { search } = req.query; 
+      let userQuery = {}; 
+
+      // If a search term is provided, build the query to search by mobile number
+      if (search) {
+        userQuery.mobile = {
+          $regex: search, 
+          $options: "i", 
+        };
+      }
+
       try {
-        const users = await userCollection.find().toArray();
-        res.status(200).send(users);
+        // Fetch users from the database, sorted by _id in descending order
+        const users = await userCollection
+          .find(userQuery)
+          .sort({ _id: -1 })
+          .toArray();
+
+        // Respond with the list of users
+        res.status(200).json(users); 
       } catch (error) {
         console.error("Error fetching users:", error);
-        res.status(500).send({ message: "Internal Server Error" });
+
+        res.status(500).json({ message: "Internal Server Error" });
       }
     });
 

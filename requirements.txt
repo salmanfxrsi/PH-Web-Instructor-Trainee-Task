@@ -81,9 +81,9 @@ Users, agents, and admins can log in with: ✔️
 - **5 Taka fee** is added to the **admin account**. ✔️
 - System total money updates. ✔️
 - Users receive **a transaction notification**. ✔️
-
-### **3. Cash-Out (User)**
-- Users can cash-out through authorized agents.
+ 
+### **3. Cash-Out (User)** ✔️
+- Users can cash-out through authorized agents. ✔️
 - **1.5% fee** applies to cash-out transactions. ✔️
 - Users must provide **amount and PIN**. ✔️
 - After transaction: ✔️

@@ -9,19 +9,19 @@ In this evaluation, you will demonstrate your skills and creativity by creating 
 - Your assessment will be evaluated based on **technical proficiency, understanding of company needs, and the ability to deliver an intuitive and efficient solution**.
 
 ---
-## **Technology Stack**
-- **Node.js**
-- **React**
-- **Express.js**
-- **MongoDB**
+## **Technology Stack** ✔️
+- **Node.js** ✔️
+- **React** ✔️
+- **Express.js** ✔️
+- **MongoDB** ✔️
 
 > **Bonus:** Using **Mongoose** on the back-end will be highly appreciated.
 
 ---
 ## **Account Features**
 
-### **Roles in the System**
-There will be **three roles** in the system:
+### **Roles in the System** ✔️
+There will be **three roles** in the system: ✔️
 
 ### **1. User Account**
 - Users can **register** with their information.
@@ -31,40 +31,40 @@ There will be **three roles** in the system:
 - Users can **cash-out** via an agent with a **1.5% fee**. ✔️
 
 ### **2. Agent Account**
-- Agents can **register** with their information.
+- Agents can **register** with their information. ✔️
 - Agents require **admin approval** for verification.
 - Approved agents receive **100,000 Taka** in their accounts. ✔️
 - Agents can **request a balance recharge** from the admin.
 - Agents **earn 1%** from every **user cash-out transaction**. ✔️
 
 ### **3. Admin Account**
-- There will be **one admin** in this assessment.
+- There will be **one admin** in this assessment. ✔️
 - Admin can **manage users** and **block users/agents**.
 - Admin can **verify and approve agents**.
 - Admin can **add money** to agents' accounts.
 - Admin **earns 0.5% of cash-out transactions** and **5 Taka per money operation**. ✔️
 - Admin **monitors the total money in the system**. ✔️
 
-> **Each transaction must generate a unique transaction ID, which will be stored in the database.**
+> **Each transaction must generate a unique transaction ID, which will be stored in the database.** ✔️
 
 ---
 ## **System Features**
 
 ### **1. Login & Registration System** ✔️ 
-Users and agents must register with:
-- **Name**
-- **5-digit PIN** 
-- **Mobile Number** (Unique)
-- **Email** (Unique)
+Users and agents must register with: ✔️
+- **Name** ✔️
+- **6-digit PIN** ✔️
+- **Mobile Number** (Unique) ✔️
+- **Email** (Unique) ✔️
 - **Account Type** (Dropdown: User / Agent) ✔️ 
-- **NID (Unique)**
+- **NID (Unique)** ✔️
 
-On registration:
+On registration: ✔️
 - **Users receive 40 Taka** bonus. ✔️
 - **Agents receive 100,000 Taka** for transactions. ✔️
 
-#### **Login System**
-Users, agents, and admins can log in with:
+#### **Login System** ✔️
+Users, agents, and admins can log in with: ✔️
 - **Mobile Number / Email** ✔️
 - **PIN** ✔️
 
@@ -94,14 +94,14 @@ Users, agents, and admins can log in with:
   - **Total money in the system updates**. ✔️
 - Users receive **a transaction notification**. ✔️
 
-### **4. Cash-In (Agent)**
+### **4. Cash-In (Agent)** ✔️
 - Users can cash-in via authorized agents.
-- Agents must enter **amount and PIN**.
-- **No transaction fee** applies.
-- After transaction:
-  - **User balance updates**.
-  - **Total money in the system updates**.
-- Users receive **a transaction notification**.
+- Agents must enter **amount and PIN**. ✔️
+- **No transaction fee** applies. ✔️
+- After transaction: ✔️
+  - **User balance updates**. ✔️
+  - **Total money in the system updates**. ✔️
+- Users receive **a transaction notification**. ✔️
 
 ### **5. Balance Inquiry** ✔️
 - Users and agents see their balances **blurred by default**. ✔️
@@ -114,7 +114,7 @@ Users, agents, and admins can log in with:
 - Clicking a user shows **their transaction history**. ✔️
 - Admin can **search users by phone number**.
 
-### **7. Transaction History**
+### **7. Transaction History** ✔️
 - **Users & agents** can view their **last 100 transactions**. ✔️
 - **Admin** can view detailed transactions of any user/agent. ✔️
 

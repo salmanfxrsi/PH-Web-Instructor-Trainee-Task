@@ -25,7 +25,9 @@ const Register = () => {
     setError("");
 
     // Pin Length Validation
-    if (pin.length !== 6) return setError("Pin must be in 6 Digits");
+    if (pin.length !== 6) {
+      return setError("Pin must be 6 digits");
+    }
 
     if (accountType === "agent") balance = 100000;
 
@@ -40,16 +42,28 @@ const Register = () => {
       status: "active",
     };
 
-    signUp(email, pin).then(async (result) => {
-      try {
-        await axiosPublic.post("/users", userInfo);
+    try {
+      // Step 1: First, post user data to your server
+      const response = await axiosPublic.post("/users", userInfo);
+
+      // Step 2: If the server response is successful, sign up with Firebase
+      if (response.status === 201) {
+        const result = await signUp(email, pin);
+
+        // Step 3: Set user state and navigate
         setUser(result.user);
         toast.success("Registration Successful");
         navigate("/");
-      } catch (error) {
-        toast.error(error.message);
       }
-    });
+    } catch (error) {
+      if (error.response) {
+        // Error from the server
+        toast.error(error.response.data.message || "Failed to register user");
+      } else {
+        // Error from Firebase
+        toast.error(error.message || "An error occurred during registration");
+      }
+    }
   };
 
   return (

@@ -51,9 +51,43 @@ async function run() {
 
     app.post("/users", async (req, res) => {
       try {
-        const userInfo = req.body;
-        const result = await userCollection.insertOne(userInfo);
-        res.status(201).json(result);
+        const { name, pin, mobile, email, accountType, nid } = req.body;
+
+        // 1. Input validation
+        if (!name || !pin || !mobile || !email || !accountType || !nid) {
+          return res.status(400).json({ message: "All fields are required." });
+        }
+
+        if (!/^\d{6}$/.test(pin)) {
+          return res
+            .status(400)
+            .json({ message: "PIN must be exactly 6 digits." });
+        }
+
+        // 2. Duplicate check
+        const existingUser = await userCollection.findOne({
+          $or: [{ mobile }, { email }, { nid }],
+        });
+
+        if (existingUser) {
+          return res
+            .status(400)
+            .json({ message: "Mobile, Email, or NID is already in use." });
+        }
+
+        // 3. Insert new user into the database
+        const result = await userCollection.insertOne({
+          name,
+          pin,
+          mobile,
+          email,
+          accountType,
+          nid,
+        });
+
+        res
+          .status(201)
+          .json({ message: "User registered successfully!", result });
       } catch (error) {
         console.error("Error adding user:", error);
         res.status(500).json({ message: "Failed to add user", error });
@@ -89,7 +123,7 @@ async function run() {
         }
 
         const result = await userCollection.updateOne(
-          { _id: new ObjectId(id) }, 
+          { _id: new ObjectId(id) },
           { $set: { status: status } }
         );
 
@@ -235,7 +269,7 @@ async function run() {
           return res.status(400).json({ error: "Insufficient balance." });
         }
 
-        // Step 2: Verify PIN 
+        // Step 2: Verify PIN
         if (agent.pin !== pin) {
           return res.status(401).json({ error: "Invalid PIN." });
         }
@@ -251,7 +285,6 @@ async function run() {
             .status(400)
             .json({ error: "Agent not authorized or not found." });
         }
-
 
         // Step 4: Increase user balance
         await userCollection.updateOne(
